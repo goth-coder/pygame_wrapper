@@ -159,12 +159,6 @@ class Simulation:
                     self.reset_simulation()
                 elif self.pause_button.rect.collidepoint(event.pos):
                     self.toggle_pause()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    self.start_charging()
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_SPACE:
-                    self.launch_ball()
 
     def toggle_pause(self):
         """Toggle the paused state."""

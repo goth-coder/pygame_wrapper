@@ -97,7 +97,24 @@ Key methods you may want to customize:
 - `handle_events()`: Handle additional keyboard or mouse events.
 - `_draw_static_objects()`: Draw background or static game elements.
 
----
+
+### Proposed Organization
+
+> Constants → UI Classes → Simulation Class → Game Objects classes
+
+#### UI Classes
+- `UIButton`: A clickable button with hover effects.
+- `UIPanel`: A panel that can contain other UI elements.
+- `UISlider`: A slider for selecting values within a range.
+
+#### Simulation Class
+- `Simulation`: The main class for running the simulation.
+
+#### Game Objects Classes
+- `Projectile`: Represents a projectile fired by the player or enemies.
+- `Lever`: Represents a lever.
+- `Catapult`: Represents a catapult that can launch projectiles.
+- `Platform`: Represents a platform that can move or be interacted with.
 
 ## Development
 
@@ -131,6 +148,12 @@ If you want to use a different editor, you can run Ruff manually:
 ```bash
 ruff check .
 ```
+
+
+
+## What's Next?
+
+- Maybe add `GameObject`: Base class for all game objects.
 
 ---
 
