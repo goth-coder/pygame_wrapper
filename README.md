@@ -1,24 +1,24 @@
 # Pygame Wrapper
 
-A simple wrapper for Pygame to make game development easier. This project provides utility functions and classes to simplify common Pygame operations.
+A simple wrapper around Pygame to make game development easier and more structured. This project provides utility classes and functions for building simulations, games, or interactive visualizations.
 
 ## Features
 
-- UI components with animations (buttons, panels)
-- Color manipulation utilities
-- Event handling simplification
-- Simulation framework
+- UI components with hover animations (buttons, panels)
+- Color manipulation utilities (e.g., linear color interpolation)
+- Simplified event handling
+- A reusable simulation/game framework
 
 ## Requirements
 
 - Python 3.10 or higher
-- Dependencies as listed in `requirements.txt`
+- Dependencies listed in `requirements.txt`
 
 ## Installation
 
-There are multiple ways to install this project:
+You can install this project in multiple ways:
 
-### Option 1: Using pip with requirements.txt
+### Option 1: Using pip and requirements.txt
 
 ```bash
 # Clone the repository
@@ -38,19 +38,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Option 2: Using uv (Faster Python Package Installer)
+### Option 2: Using uv (Fast Python Package Installer)
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/pygame_wrapper.git
 cd pygame_wrapper
 
-# Create a virtual environment with Python 3.13
+# Create a virtual environment with a specific Python version (e.g., Python 3.13)
 uv venv --python=python3.13 .venv
 
 # Activate the virtual environment
 # On Windows:
-.\.venv\Scripts\activate
+.\.venv\Scripts\ctivate
 # On macOS/Linux:
 source .venv/bin/activate
 
@@ -58,55 +58,82 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
-### Option 3: Installation as a Package
+### Option 3: Install as Editable Package (Development Mode)
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/pygame_wrapper.git
 cd pygame_wrapper
 
-# Install the package in development mode
+# Install in development mode
 pip install -e .
 ```
 
-## Usage
+## Running the Example Template
 
-Import the components you need from the package:
+This repository includes a `template.py` file that demonstrates how to use the wrapper to create a simple simulation with buttons and event handling.
 
-```python
-from pygame_wrapper import UIButton, Simulation
+### To run the template:
 
-# Create a simulation
-sim = Simulation(width=800, height=600)
-sim.run()
+```bash
+python template.py
 ```
 
-### Creating a Basic Game
+### Template Features
 
-You can use the template.py as a starting point:
+- **Pause/Resume button** to freeze or continue the simulation.
+- **Restart button** to reset the simulation.
+- Top UI panel with instructions (e.g., "Hold SPACE to launch!").
+- Basic keyboard and mouse event handling.
+- Placeholder for adding your own game logic.
 
-```python
-import pygame
-from pygame_wrapper import Simulation, UIButton
+### How to Customize
 
-def main():
-    # Initialize your game
-    game = Simulation(width=800, height=600)
-    
-    # Add game elements
-    # ...
-    
-    # Run the game loop
-    game.run()
+You can use `template.py` as a starting point for your own game or simulation.  
+Key methods you may want to customize:
 
-if __name__ == "__main__":
-    main()
-```
+- `setup_simulation()`: Initialize game objects and static elements.
+- `game_logic()`: Add your simulation/game logic here.
+- `handle_events()`: Handle additional keyboard or mouse events.
+- `_draw_static_objects()`: Draw background or static game elements.
+
+---
 
 ## Development
 
-To set up the development environment:
+To set up a development environment with linting (Ruff) and other dev tools:
 
 ```bash
-# Install development dependencies
+# Install dev dependencies
 pip install -e ".[dev]"
+```
+
+Or if using `uv`:
+
+```bash
+uv pip install --all-features
+```
+
+Then you can run Ruff manually:
+
+```bash
+ruff check .
+```
+
+## VS Code: Automatic Formatting with Ruff
+
+This project includes a `.vscode/settings.json` file that configures VS Code to automatically format Python files and organize imports using [Ruff](https://docs.astral.sh/ruff/) every time you save a file. This ensures consistent code style and helps keep your imports tidy.
+
+**No extra setup is needed if you use VS Code and have the [Ruff extension](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) installed.**
+
+If you want to use a different editor, you can run Ruff manually:
+
+```bash
+ruff check .
+```
+
+---
+
+## License
+
+MIT License.
