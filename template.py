@@ -1,12 +1,14 @@
+
+import math
 import sys
 import time
-
+import pymunk
 import pygame
 
 # Settings
 WIDTH, HEIGHT = 800, 600
 TOP_PANEL_HEIGHT = 90
-
+GRAVITY = 981  # Gravity constant for the simulation
 # Colors Constants
 SKY_BLUE = (135, 206, 235)
 BACKGROUND_COLOR = SKY_BLUE
@@ -113,6 +115,8 @@ class Simulation:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption("Window Title")
         self.clock = pygame.time.Clock()
+        self.space = pymunk.Space()
+        self.space.gravity = (0, GRAVITY)  # Set gravity in the space
 
         # Font settings
         self.font = pygame.font.SysFont(None, 22)  # Main font for UI
@@ -158,7 +162,7 @@ class Simulation:
                 if self.reset_button.rect.collidepoint(event.pos):
                     self.reset_simulation()
                 elif self.pause_button.rect.collidepoint(event.pos):
-                    self.toggle_pause()
+                    self.game_logic('event1')
 
     def toggle_pause(self):
         """Toggle the paused state."""
@@ -166,16 +170,23 @@ class Simulation:
         # Update button text based on pause state
         self.pause_button.text = "Resume" if self.paused else "Pause"
 
-    def game_logic(self):
+    def game_logic(self,event):
         """
         Add specific logic for the game, such as physics or game rules.
-        """
-
-        def logic_1():
+        """ 
+        def logic_1():  
             pass
-
         def logic_2():
-            pass
+            pass 
+
+        if self.paused: # If the simulation is paused, skip logic processing
+            return
+
+
+        if event == "logic_1":
+            logic_1()
+        elif event == "logic_2":
+            logic_2()
 
     def draw(self):
         """
@@ -234,8 +245,18 @@ class Simulation:
         """Main loop that handles events, updates the display, and maintains a fixed frame rate."""
         while True:
             self.handle_events()  # Handle events
+            self.update()  # Advance physics
             self.draw()  # Render the simulation
             self.clock.tick(60)
+
+    def update(self):
+        """
+        Update the simulation state.
+        This method advances the physics simulation by a fixed time step.
+        It is called every frame to ensure consistent physics updates.
+        """
+        if not self.paused:
+            self.space.step(1 / 60)
 
 
 if __name__ == "__main__":
